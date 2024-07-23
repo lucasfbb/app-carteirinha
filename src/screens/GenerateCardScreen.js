@@ -3,6 +3,7 @@ import { View, Text, TextInput, TouchableOpacity, StyleSheet } from 'react-nativ
 import axios from 'axios';
 import QRCode from 'react-native-qrcode-svg';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { IP_PORTA } from 'react-native-dotenv';
 
 axios.defaults.timeout = 20000; // 20 segundos
 
@@ -26,7 +27,7 @@ const CardScreen = ({ navigation }) => {
     try {
       setError('');
       console.log('Fetching user data...');
-      const response = await axios.post(`${API_PORTA}/fetchUser`, { matricula });
+      const response = await axios.post(`${IP_PORTA}/fetchUser`, { matricula });
       console.log('Response status:', response.status);
       console.log('Response data:', response.data);
       const userData = response.data;
@@ -36,7 +37,7 @@ const CardScreen = ({ navigation }) => {
       }
 
       console.log('Generating QR code...');
-      const qrResponse = await axios.post(`${API_PORTA}/generate`, { matricula });
+      const qrResponse = await axios.post(`${IP_PORTA}/generate`, { matricula });
 
       if (qrResponse.data.error) {
         throw new Error(qrResponse.data.error);

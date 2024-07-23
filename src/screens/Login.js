@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { View, Text, TextInput, Button, StyleSheet, TouchableOpacity, Image} from 'react-native';
 import axios from 'axios';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { API_PORTA } from 'react-native-dotenv';
+import { IP_PORTA } from 'react-native-dotenv';
 
 const LoginScreen = ({ navigation }) => {
   const [username, setUsername] = useState('');
@@ -11,7 +11,7 @@ const LoginScreen = ({ navigation }) => {
 
   const login = async () => {
     try {
-      const response = await axios.post(`${API_PORTA}/login`, {
+      const response = await axios.post(`${IP_PORTA}/login`, {
         username,
         password
       });
