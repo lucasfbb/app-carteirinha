@@ -26,7 +26,7 @@ const CardScreen = ({ navigation }) => {
     try {
       setError('');
       console.log('Fetching user data...');
-      const response = await axios.post('http://192.168.0.131:3000/fetchUser', { matricula });
+      const response = await axios.post(`${API_PORTA}/fetchUser`, { matricula });
       console.log('Response status:', response.status);
       console.log('Response data:', response.data);
       const userData = response.data;
@@ -36,7 +36,7 @@ const CardScreen = ({ navigation }) => {
       }
 
       console.log('Generating QR code...');
-      const qrResponse = await axios.post('http://192.168.0.131:3000/generate', { matricula });
+      const qrResponse = await axios.post(`${API_PORTA}/generate`, { matricula });
 
       if (qrResponse.data.error) {
         throw new Error(qrResponse.data.error);
